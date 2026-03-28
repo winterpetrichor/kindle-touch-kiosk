@@ -42,9 +42,14 @@ Credit to NiLuJe, hwhw, schuhumi, and all the other fine people on MobileRead fo
     2. Tap Toggle USBNetwork
     3. when usb networking is toggled, it does some funky stuff on the usb bus that almost always crashes whatever device it is plugged into. This is why you should not toggle usb network while usb connected
 19. connect usb to computer (ideally a mac)
-20. configure the new RNDIS/Ethernet Gadget device that should be listed in network settings on your desktop
+   1. For Windows Users:
+      1. Download & Unzip kindle_rndis.inf_amd64-v1.0.0.1.zip from this repo
+      2. R-click "5-runasadmin_register-CA-cer.cmd" and "Run as administrator"*
+      3. In Device Manager, expand "Ports (COM & LPT)", R-click "Serial USB device (COM3)" > Update Driver Software...
+      4. Browse for my computer for driver software > Select extract folder and choose the kindle_rndis.inf file
+21. configure the new RNDIS/Ethernet Gadget device
     1. set ip to `192.168.15.201`
-21. ssh to your kindle: `ssh root@192.168.15.244`
+22. ssh to your kindle: `ssh root@192.168.15.244`
     1. the jailbreak will have cleared the root password, so you can login with blank password
        1. blank password only works via usbnet, using the default DropBear server. you MUST set root password for ssh to work via wifi
     2. change root password
@@ -53,16 +58,16 @@ Credit to NiLuJe, hwhw, schuhumi, and all the other fine people on MobileRead fo
        3. switch back to readonly mode: `mntroot ro`
        4. readonly mode only affects the system partition, not userdata (`/mnt/us/`)
     3. on the kindle, the internal storage is at `/mnt/us` and you whould put your ssh key in `/mnt/us/usbnet/etc/authorized_keys`
-22. once you have changed password and installed your key(s), exit the ssh session and unplug usb
-23. open KUAL and toggle usb network
-24. Now lets enable ssh via wifi only, at boot
+23. once you have changed password and installed your key(s), exit the ssh session and unplug usb
+24. open KUAL and toggle usb network
+25. Now lets enable ssh via wifi only, at boot
     1. first, toggle usbnet (you need it off to change these settings)
     2. tap Enable SSH at boot
     3. tap Restrict SSH to WiFi, stay in USBMS
        1. now when you connect usb it will always do the storage thing, but ssh works via wifi
     4. tap SSHD: Use OpenSSH
        1. OpenSSH is a bit faster than the default DropBear server on the kindle
-25. reboot the kindle and confirm that you can ssh to it via wifi, and that usb works for storage
+26. reboot the kindle and confirm that you can ssh to it via wifi, and that usb works for storage
 
 ## VNC Client Auto Start
 
@@ -82,7 +87,6 @@ During the delay it will display battery information.
 You can manually force it to quit (and be restarted) by pressing the home button. 
 
 to undo this, there is another script named `undo_kiosk_autostart.sh`, after which you should reboot and it will launch the normal kindle GUI
-
 ## VNC Server Docker Container
 
 Inside `docker-vnc-kiosk-server` are the pieces for a docker container running chromium in kiosk mode, pointed at your url, and a vnc server.
