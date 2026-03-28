@@ -4,7 +4,7 @@ Converting a Kindle Touch into a wall-mounted touchscreen kiosk for web-based in
 
 ## Acknowledgements
 This repository is a repackaging of [other people's work](https://wiki.mobileread.com/wiki/K5_Index). 
-Credit to NiLuJe, hwhw, schuhumi, and all the other fine people on MobileRead forums who made all this work, and shared it with us.
+Credit to NiLuJe, hwhw, schuhumi, Marco77, and all the other fine people on MobileRead forums who made all this work, and shared it with us.
 
 I chose to include all required binaries instead of linking to download sources (links can be found further down in "Other Hacks"), 
 mostly out of fear that the original sources would eventually be gone. I think the work that has been done to make this possible is valuable, 
@@ -98,6 +98,7 @@ Here are some useful resources for K5 (aka Kindle 5, Kindle Touch, KT):
 * [Official Kindle Software Updates Page](https://www.amazon.com/gp/help/customer/display.html?nodeId=GKMQC26VQQMM8XSW) is where you can find official update files, if you want to manually update to a specific version
 * [This pretty cool project](https://barwap.com/projects/okmonitor/) uses a native video player and netcat to stream video to the kindle 
 * [cross-compile python3 modules on desktop for kindle](https://www.mobileread.com/forums/showthread.php?t=343714), thats helpful
+* [Windows 10 RNDIS Network Device Driver](https://www.mobileread.com/forums/showthread.php?p=3283986), Windows network device driver
 
 ## Kiosk Setup Steps
 
@@ -205,6 +206,28 @@ Pro-tip: when usb network is being enabled, it does some weird stuff on the USB 
 Always unplug USB cable before enabling it.
 
 When enabled, the kindle no longer shows up as USB storage device. Instead, it shows up as an RNDIS/Ethernet Gadget. 
+If you're using Windows, the device may not show up or may show up as Serial USB device (COM3), here's text of the [original post](https://www.mobileread.com/forums/showthread.php?p=3283986) is below.
+   Windows 10 signed RNDIS driver for USBNetwork
+   【Prerequisites】
+   Jailbroken Kindle (tested on PW3 5.6.5)
+   KUAL, MRPI
+   installed mrpackage kindle-usbnet
+   A Windows 10 PC (x64 edition)
+   
+   【Situation】
+   On Windows 10, when jailbroken Kindle with enabled USBNet is plugged via USB, it will appear as a "Serial USB device (COM3)" in device manager.
+   If Windows 10 already recognized your Kindle device as an extra network card, you do not need this driver package :3
+   
+   【TL;DR】
+   Download & Unzip attachment kindle_rndis.inf_amd64-v1.0.0.1.zip
+   R-click "5-runasadmin_register-CA-cer.cmd" and "Run as administrator"*
+   In Device Manager, expand "Ports (COM & LPT)", R-click "Serial USB device (COM3)" > Update Driver Software...
+   Browse for my computer for driver software > Select extract folder
+   * You should not run random batch files from untrusted parties usually
+   
+   【Result】
+   You should see a new network card Kindle USB RNDIS Device (USBNetwork enabled) in "Network and Sharing Center" > Change adapter settings. Assign a static IP such as 192.168.15.1 and you can ping the device (ping 192.168.15.244).
+
 For the K5, you want to set your machine's IP to `192.168.15.201`, and the kindle will be `192.168.15.244`. 
 
 Since we ran the jailbreak, the root password is now blank, so you can ssh as root. 
