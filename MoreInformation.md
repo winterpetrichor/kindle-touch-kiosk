@@ -148,7 +148,7 @@ Later on, we will switch to using a different package installation method (withi
 KUAL comes as two separate packages: the app itself, and developer keys needed to enable running the app.
 The jailbreak meathod we used includes the developer keys, so we do not need to worry about installing them separately.
 
-1. inside `ManualPackages`, find `Update_KUALBooklet_v2.7_install.bin` and put that on your kindle internal storage
+1. inside `ManualPackages` (in this repo), find `Update_KUALBooklet_v2.7_install.bin` and put that on your kindle internal storage
 2. eject, unplug, and do the update dance
 4. You will see KUAL "book" on your home screen
 
