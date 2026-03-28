@@ -28,7 +28,7 @@ Credit to NiLuJe, hwhw, schuhumi, and all the other fine people on MobileRead fo
    1. this will just print a jailbreak message at the bottom 
 8. restart the kindle
 9. plug in usb, mount internal kindle storage
-10. inside `ManualPackages/`, grab `Update_KUALBooklet_v2.7_install.bin`, and put it on the root of kindle internal storage
+10. inside `ManualPackages/` (in this repo), grab `Update_KUALBooklet_v2.7_install.bin`, and put it on the root of kindle internal storage
 11. eject and unplug kindle
 12. go update software again, this will actually install the package you just put on internal storage (and then delete the package when done)
 13. you now have a new "book" on the kindle home screen named KUAL
